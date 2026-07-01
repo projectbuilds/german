@@ -1,7 +1,5 @@
 <?php
-// ============================================
-// GOOGLE BOT DETECTION & REDIRECTION SYSTEM
-// ============================================
+
 
 /**
  * Check if the visitor is a Google bot
